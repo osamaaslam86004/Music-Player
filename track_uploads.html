@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP3 File Upload</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header text-center">
+                        <h3>Upload MP3 Audio File</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="mp3-upload-form">
+                            <div class="mb-3">
+                                <label for="audioFile" class="form-label">Choose MP3 File</label>
+                                <input class="form-control" type="file" id="audioFile" accept=".mp3" required><br>
+
+                                <!-- Track name -->
+                                <label for="track-name" class="form-label">Track Name</label>
+                                <input class="form-control" type="input" id="track-name" required maxlength="100"
+                                    autocomplete="on"><br>
+
+                                <!-- Author Name -->
+                                <label for="autho-name" class="form-label">Track Name</label>
+                                <input class="form-control" type="input" id="author-name" required maxlength="100"
+                                    autocomplete="on">
+                            </div>
+
+                            <div style="display: flex;">
+                                <!-- Upload button -->
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" id="upload-btn">Upload</button>
+                                </div>
+
+                                <!-- Submit button -->
+                                <div class="text-center" style="margin-left: 30px;">
+                                    <button type="submit" class="btn btn-secondary" id="submit-btn">Submit</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Send Tracks to Backend -->
+    <script src="js/send_tracks_to_backend.js"></script>
+</body>
+
+</html>
