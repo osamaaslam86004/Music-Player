@@ -1,14 +1,15 @@
-document.getElementById('upload-btn').addEventListener('click', async function (e) {
+const uploadBtn = document.getElementById('upload-btn')
+
+uploadBtn.addEventListener('click', async function (e) {
     e.preventDefault();
+    uploadBtn.disabled = true
 
 
     const fileInput = document.getElementById('audioFile');
     const file = fileInput.files[0];
-    console.log(file)
     const trackName = document.getElementById('track-name').value;
-    console.log(trackName)
     const authorName = document.getElementById('author-name').value;
-    console.log(authorName)
+    console.log(authorName, trackName, file)
 
 
     // Validate inputs
