@@ -55,6 +55,7 @@ uploadBtn.addEventListener('click', async function (e) {
         // Send the data to the backend using fetch
         const response = await fetch('https://music-player-backend-for-music-player-ui-ux.vercel.app/upload', {
             method: 'POST',
+            headers: { "Access-Control-Request-Method": POST },
             body: formData,
             // No need to set Content-Type header; fetch sets it automatically for FormData
         })
