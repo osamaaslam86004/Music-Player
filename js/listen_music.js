@@ -16,8 +16,12 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
 // Fetch audio tracks from FastAPI
 async function fetchTracks() {
+    let requestOptions = {
+        method: 'GET'
+    };
+    let url = 'https://music-player-backend-for-music-player-ui-ux.vercel.app/tracks/';
     try {
-        const response = await fetch('https://music-player-backend-for-music-player-ui-ux.vercel.app/tracks/');
+        const response = await fetch(url, requestOptions);
         trackList = await response.json();
         console.log(trackList);
 
