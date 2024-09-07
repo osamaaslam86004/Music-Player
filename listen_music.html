@@ -17,6 +17,17 @@
 
     <div class="player">
         <div class="wrapper">
+
+            <!-- Alert Component-->
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert_info"
+                style="display: none;">
+                <strong id="alert-info-strong">Holy guacamole! You should check in on some of those fields
+                    below.</strong>
+                <button type="button" class="close" id="alert-button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
             <!-- Loader -->
             <div class="loader" id="loader">
                 <p class="loading-text">Loading</p>
@@ -78,6 +89,9 @@
             </div>
         </div>
     </div>
+
+    <!--load NameSpace -->
+    <script src="js/utils.js"></script>
 
     <!--listen music -->
     <script src="js/listen_music.js"></script>

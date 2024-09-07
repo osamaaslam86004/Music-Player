@@ -11,6 +11,12 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     await fetchTracks(); // Fetch tracks and wait for completion
     loadTrack(currentTrackIndex); // Load the first track
     document.getElementById('loader').style.display = 'none'; // Hide loader
+
+    // Event For Closing The Alert
+    let alertButton = document.getElementById('alert-button')
+    alertButton.addEventListener('click', event => {
+        MyNamespace.closeAlert(event);
+    });
 });
 
 
@@ -22,6 +28,14 @@ async function fetchTracks() {
     let url = 'https://music-player-backend-for-music-player-ui-ux.vercel.app/tracks/';
     try {
         const response = await fetch(url, requestOptions);
+        if (response.status === 503) {
+            errorResponse = await response.json();
+            MyNamespace.alertInfoFunction(errorResponse.details);
+            return;
+        } else if (response.status === 500) {
+            MyNamespace.alertInfoFunction(errorResponse.details);
+            return;
+        }
         trackList = await response.json();
         console.log(trackList);
 

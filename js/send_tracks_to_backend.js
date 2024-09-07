@@ -1,9 +1,23 @@
-const uploadBtn = document.getElementById('upload-btn')
 
-uploadBtn.addEventListener('click', async function (e) {
-    e.preventDefault();
-    uploadBtn.disabled = true
+window.addEventListener('DOMContentLoaded', async (event) => {
+    // Event For Closing The Alert
+    let alertButton = document.getElementById('alert-button')
+    alertButton.addEventListener('click', alertButtonEvent => {
+        MyNamespace.closeAlert(alertButtonEvent);
+    });
 
+    const uploadBtn = document.getElementById('upload-btn')
+    uploadBtn.addEventListener('click', uploadBtnEvent => {
+
+        uploadBtnEvent.preventDefault();
+        uploadBtn.disabled = true
+        sendTracksToBackend(uploadBtnEvent)
+    });
+});
+
+
+
+async function sendTracksToBackend(e) {
 
     const fileInput = document.getElementById('audioFile');
     const file = fileInput.files[0];
@@ -54,13 +68,28 @@ uploadBtn.addEventListener('click', async function (e) {
     try {
         // Send the data to the backend using fetch
         const response = await fetch('https://music-player-backend-for-music-player-ui-ux.vercel.app/upload', {
+            // const response = await fetch('http://127.0.0.1:8000/upload/', {
             method: 'POST',
             body: formData,
             // No need to set Content-Type header; fetch sets it automatically for FormData
         })
+        if (response.status === 503) {
+            errorResponse = await response.json();
+            console.log(errorResponse)
+            console.log(errorResponse.status_code)
+            MyNamespace.alertInfoFunction(errorResponse.details);
+            return;
+        } else if (response.status === 500) {
+            console.log(errorResponse)
+            console.log(errorResponse.status_code)
+            MyNamespace.alertInfoFunction(errorResponse.details);
+            return;
+        }
         const responseData = await response.json();
         if (response.ok) {
-            alert('File uploaded successfully!');
+            console.log(errorResponse)
+            console.log(errorResponse.status_code)
+            MyNamespace.alertInfoFunction("File uploaded Successfully!");
             console.log(responseData)
             // Optionally, reset the form
             document.getElementById('mp3-upload-form').reset();
@@ -73,6 +102,6 @@ uploadBtn.addEventListener('click', async function (e) {
         console.error(error);
         alert('An error occurred while uploading files.');
     }
-});
+}
 
 
