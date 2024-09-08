@@ -67,7 +67,7 @@ async function sendTracksToBackend(e) {
 
     try {
         // Send the data to the backend using fetch
-        const response = await fetch('https://www.music-player-backend-for-music-player-ui-ux.vercel.app/upload', {
+        const response = await fetch('https://music-player-backend-for-music-player-ui-ux.vercel.app/upload', {
             // const response = await fetch('http://127.0.0.1:8000/upload/', {
             method: 'POST',
             body: formData,

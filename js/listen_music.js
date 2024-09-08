@@ -25,7 +25,7 @@ async function fetchTracks() {
     let requestOptions = {
         method: 'GET'
     };
-    let url = 'https://www.music-player-backend-for-music-player-ui-ux.vercel.app/tracks/';
+    let url = 'https://music-player-backend-for-music-player-ui-ux.vercel.app/tracks/';
     try {
         const response = await fetch(url, requestOptions);
         if (response.status === 503) {
