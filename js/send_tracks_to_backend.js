@@ -67,28 +67,25 @@ async function sendTracksToBackend(e) {
 
     try {
         // Send the data to the backend using fetch
-        const response = await fetch('https://music-player-backend-for-music-player-ui-ux.vercel.app/upload', {
+        const response = await fetch('https://www.music-player-backend-for-music-player-ui-ux.vercel.app/upload', {
             // const response = await fetch('http://127.0.0.1:8000/upload/', {
             method: 'POST',
             body: formData,
             // No need to set Content-Type header; fetch sets it automatically for FormData
         })
         if (response.status === 503) {
-            errorResponse = await response.json();
+            let errorResponse = await response.json();
             console.log(errorResponse)
-            console.log(errorResponse.status_code)
-            MyNamespace.alertInfoFunction(errorResponse.details);
+            MyNamespace.alertInfoFunction(errorResponse);
             return;
         } else if (response.status === 500) {
+            let errorResponse = await response.json();
             console.log(errorResponse)
-            console.log(errorResponse.status_code)
-            MyNamespace.alertInfoFunction(errorResponse.details);
+            MyNamespace.alertInfoFunction(errorResponse);
             return;
         }
         const responseData = await response.json();
         if (response.ok) {
-            console.log(errorResponse)
-            console.log(errorResponse.status_code)
             MyNamespace.alertInfoFunction("File uploaded Successfully!");
             console.log(responseData)
             // Optionally, reset the form
